@@ -42,5 +42,5 @@ $stmt->bind_param("isssssss",
 $stmt->execute();
 $stmt->close();
 
-header("Location: /index.php?route=home");
+header("Location: index.php?route=home");
 ?>

@@ -26,7 +26,7 @@ if (is_upload_authorized()) {
 <div id="page-wrap">
     <h1>Drop</h1>
     <span>Drop a file in the box below, or click "Choose file", and then click "Upload".</span>
-    <form action="/index.php?route=uploadfile&key=<?php echo $_REQUEST["key"]; ?>" method="post" enctype="multipart/form-data" id="drop-form">
+    <form action="index.php?route=uploadfile&key=<?php echo $_REQUEST["key"]; ?>" method="post" enctype="multipart/form-data" id="drop-form">
         <input type="file" name="dropped_file" id="dropped_file">
         <input type="submit" value="Upload File" name="submit" id="file_submit">
     </form>

@@ -8,8 +8,8 @@ function add_drop_list_rows($user_id) {
     global $mysqli;
     global $DB_TABLE_PREFIX;
     global $ROOT_URL;
-    $drop_url = "/index.php?route=upload&key=";
-    $get_url = "/index.php?route=get&key=";
+    $drop_url = "index.php?route=upload&key=";
+    $get_url = "index.php?route=get&key=";
     $stmt = $mysqli->prepare("SELECT * FROM " . $DB_TABLE_PREFIX .
         "drops WHERE owning_user_id = ?");
     $stmt->bind_param("i", $user_id);
@@ -72,7 +72,7 @@ function add_drop_list_rows($user_id) {
                     </span>
                 <?php } ?>
                 <span title='delete'>
-                    <a href='/index.php?route=delete&key=<?php echo $drop_key; ?>&csrf_token=<?php echo $_SESSION["csrf_token"]; ?>'>❌</a>
+                    <a href='index.php?route=delete&key=<?php echo $drop_key; ?>&csrf_token=<?php echo $_SESSION["csrf_token"]; ?>'>❌</a>
                 </span>
             </td>
         </tr>
@@ -127,7 +127,7 @@ function add_drop_list_rows($user_id) {
         </tr>
         <?php echo add_drop_list_rows($_SESSION["user_id"]); ?>
         <tr>
-            <td colspan='7' onclick="document.location='/index.php?route=new&csrf_token=<?php echo $_SESSION["csrf_token"]; ?>'">
+            <td colspan='7' onclick="document.location='index.php?route=new&csrf_token=<?php echo $_SESSION["csrf_token"]; ?>'">
                 <div>+ new</div>
             </td>
         </tr>

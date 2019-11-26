@@ -246,7 +246,7 @@ function enable_csrf_protection() {
 /** MICS FUNCTIONS ************************************************************/
 
 function set_route($route) {
-    header("Location: /index.php?route=$route");
+    header("Location: index.php?route=$route");
 }
 
 function get_client_ip() {
