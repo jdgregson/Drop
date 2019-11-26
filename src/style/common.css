@@ -1,0 +1,206 @@
+body, html {
+    font-family: Roboto, Consolas, Courier New, Arial, San-Serrif;
+}
+
+#header {
+    background-color: #eee;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    width: 100vw;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 35px;
+    z-index: 3;
+}
+
+#header div {
+    margin-left: 15px;
+    line-height: 57px;
+}
+
+#header-inner-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+#header-inner-wrap div {
+    height: 60px;
+    display: block;
+}
+
+#header-inner-wrap div:first-of-type {
+    float: left;
+}
+
+#header-inner-wrap div:last-of-type {
+    float: right;
+}
+
+#header-inner-wrap a {
+    text-decoration: none;
+}
+
+#settings-link {
+    margin-right: 40px;
+    margin-top: 1px;
+}
+
+.drop-list {
+    border-collapse: collapse;
+    border-spacing: 0 10px;
+    margin: 60px auto 0 auto;
+}
+
+.drop-list-row {
+    transition: box-shadow 0.1s ease-in-out;
+}
+
+.drop-list-row:hover {
+    background-color: #f9f9f9;
+}
+
+.drop-list-row:first-of-type {
+    box-shadow: none;
+}
+
+.drop-list tr:last-of-type {
+    text-align: center;
+}
+
+.drop-list tr:last-of-type:hover {
+    cursor: pointer;
+    background-color: #ededed;
+}
+
+.drop-list td {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.drop-list td span, .drop-list td div {
+    padding: 15px 0;
+    display: inline-block;
+}
+
+.drop-list-row .actions * {
+    visibility: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.drop-list-row:hover .actions * {
+    visibility: initial;
+}
+
+.drop-list-row .actions .link {
+    cursor: pointer;
+}
+
+.drop-list-row td:first-of-type {
+    text-align: center;
+}
+
+.drop-list-row td:last-of-type {
+    text-align: right;
+}
+
+.drop-list-row input[type="text"] {
+    padding: 3px;
+    width: 90px;
+    border: none;
+    text-overflow: ellipsis;
+}
+
+.form-outer-wrap {
+    width: 430px;
+    margin: 0 auto;
+}
+
+.form-inner-wrap input {
+    float: right;
+    clear: both;
+}
+
+.form-inner-wrap label {
+    float: left;
+    margin-right: 20px;
+}
+
+.form-inner-wrap input[type="submit"] {
+    margin-top: 20px;
+}
+
+.form-inner-wrap label, .form-inner-wrap input {
+    margin-bottom: 10px;
+}
+
+.form-outer-wrap .form-inner-wrap {
+    margin-top: 30px;
+}
+
+.form-inner-wrap form {
+    background: #fff;
+    position: absolute;
+    padding: 30px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.form-inner-wrap .validation-error {
+    float: right;
+    display: block;
+    clear: both;
+    color: red;
+}
+
+.form-inner-wrap .generic-error {
+    float: left;
+    clear: both;
+    margin-bottom: 20px;
+    background-color: #ffe8e8;
+    padding: 10px;
+    border: 1px solid #fdbebe;
+}
+
+#settings-wrap {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100vh;
+    z-index: 2;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: width 0.1s ease-in-out;
+    width: 400px;
+    width: 0;
+    overflow: hidden;
+}
+
+#settings-inner {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding-top: 70px;
+    box-sizing: border-box;
+}
+
+#settings-inner a {
+    text-decoration: none;
+}
+
+.settings-row {
+    width: 100%;
+    height: 50px;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 44px;
+    color: #272727;
+}
+
+.settings-row:hover {
+    background-color: #d8d8d8;
+}

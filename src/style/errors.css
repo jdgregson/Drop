@@ -1,0 +1,12 @@
+.fatal-error-wrap {
+    padding: 20px;
+}
+
+.fatal-error-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.fatal-error-text {
+    white-space: pre-wrap;
+}
