@@ -85,6 +85,7 @@ function add_drop_list_rows($user_id) {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, height=device-height"/>
     <title>Drop</title>
     <link rel="stylesheet" href="style/common.css">
     <script src="js/home.js"></script>

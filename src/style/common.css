@@ -161,6 +161,21 @@ body, html {
     background-color: #ffe8e8;
     padding: 10px;
     border: 1px solid #fdbebe;
+@media (max-width: 360px) {
+    .full-width-mobile {
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+
+    .form-inner-wrap form {
+        width: 100%;
+        margin-left: -7px;
+        padding: 10px !important;
+    }
+
+    .form-inner-wrap input {
+        width: 100%;
+    }
 }
 
 #settings-wrap {

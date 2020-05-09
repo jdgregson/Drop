@@ -17,6 +17,7 @@ if (is_upload_authorized()) {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, height=device-height"/>
     <title>Drop</title>
     <link rel="stylesheet" href="style/common.css">
     <link rel="stylesheet" href="style/upload-ui.css">
