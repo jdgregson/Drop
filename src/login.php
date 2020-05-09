@@ -14,18 +14,18 @@ if (isset($_REQUEST["submit"])) {
     $password_errors = [];
     $generic_errors = [];
     if (!isset($_POST["username"]) || $_POST["username"] == "") {
-        array_push($username_errors, "the username cannot be blank");
+        array_push($username_errors, "This field cannot be blank");
     }
     if (!isset($_POST["password"]) || $_POST["password"] == "") {
-        array_push($password_errors, "the password cannot be blank");
+        array_push($password_errors, "This field cannot be blank");
     }
     if (isset($_POST["username"]) && strlen($_POST["username"]) > 64) {
         array_push($username_errors,
-            "the username cannot exceed 64 characters");
+            "The username cannot exceed 64 characters");
     }
     if (isset($_POST["username"]) && !user_exists_by_name($_POST["username"])) {
         array_push($generic_errors,
-            "username or password is incorrect");
+            "Username or password is incorrect");
     }
 
     if (count($username_errors) > 0 || count($password_errors) > 0 ||
@@ -79,20 +79,18 @@ if (isset($_REQUEST["submit"])) {
         <h1>Drop</h1>
         <span>Log into your drop account below.</span>
         <div class="form-inner-wrap">
-            <form action="<?php echo $submit_route; ?>" method="post">
+            <form action="<?php echo $submit_route; ?>" method="post" class="full-width-mobile card card-2">
                 <?php if ($generic_error !== "") { ?>
                 <span class="generic-error"><?php echo $generic_error; ?></span>
                 <?php } ?>
-                <input type="text" name="username">
-                <label for="username">username</label>
+                <input type="text" name="username" placeholder="Username" <?php if (isset($_POST["username"])) {echo "value=\"".$_POST["username"]."\"";} ?>>
                 <span class="validation-error"><?php echo $username_error; ?></span>
                 <br>
-                <input type="password" name="password">
-                <label for="password">password</label>
+                <input type="password" name="password" placeholder="Password">
                 <span class="validation-error"><?php echo $password_error; ?></span>
                 <br><br>
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION["csrf_token"]; ?>">
-                <input type="submit" name="submit" value="login">
+                <input type="submit" name="submit" value="Login">
             </form>
         </div>
     </div>

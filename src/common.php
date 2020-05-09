@@ -204,29 +204,35 @@ function deny_access($title = "Access denied",
     die();
 }
 
-function require_user_permissions() {
-    if (isset($_SESSION["username"])) {
-        $stored_user = get_user_by_name($_SESSION["username"]);
-        if (!$stored_user) {
-            deny_access();
-        }
-    } else {
-        deny_access();
-    }
-}
-
-function require_admin_permissions() {
+function require_user_permissions($deny_access = false) {
     if (isset($_SESSION["username"])) {
         $stored_user = get_user_by_name($_SESSION["username"]);
         if ($stored_user) {
-            if ($stored_user["is_admin"] !== 1) {
-                deny_access();
-            }
-        } else {
-            deny_access();
+            return true;
         }
-    } else {
+    }
+    if ($deny_access) {
         deny_access();
+    } else {
+        set_route("home");
+        die();
+    }
+}
+
+function require_admin_permissions($deny_access = false) {
+    if (isset($_SESSION["username"])) {
+        $stored_user = get_user_by_name($_SESSION["username"]);
+        if ($stored_user) {
+            if ($stored_user["is_admin"] === 1) {
+                return true;
+            }
+        }
+    }
+    if ($deny_access) {
+        deny_access();
+    } else {
+        set_route("home");
+        die();
     }
 }
 
