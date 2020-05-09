@@ -3,6 +3,7 @@ session_start();
 $DROP_INDEX = true;
 require "config.php";
 require "common.php";
+$GLOBAL_DISABLE_CSRF = true;
 
 if (!isset($_SESSION["csrf_token"])) {
     $_SESSION["csrf_token"] = get_random_token(32);

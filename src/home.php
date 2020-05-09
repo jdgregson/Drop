@@ -4,7 +4,7 @@ if (!isset($DROP_INDEX)) {
 }
 require_user_permissions();
 
-function add_drop_list_rows($user_id) {
+function get_drop_list_json($user_id) {
     global $mysqli;
     global $DB_TABLE_PREFIX;
     global $ROOT_URL;
@@ -15,6 +15,8 @@ function add_drop_list_rows($user_id) {
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
+    $i = 0;
+    $json = "{";
 
     while ($row = $result->fetch_assoc()) {
         $drop_key = $row['drop_key'];
@@ -39,46 +41,25 @@ function add_drop_list_rows($user_id) {
             $curl_link = "";
             $wget_link = "wget \"$ROOT_URL/$file_path/$file_name\"";
         }
-        ?>
-        <tr class='drop-list-row'>
-            <td>
-                <span title='status'><?php echo $display_status; ?></span>
-            </td>
-            <td>
-                <span title='drop link'><a href='<?php echo $link_url; ?>' target='_blank'><?php echo $link_title; ?></a></span>
-            </td>
-            <td>
-                <span title='created: <?php echo $create_date; ?>'><?php echo short_date($create_date); ?></span>
-            </td>
-            <td>
-                <span title='dropped: <?php echo $drop_date; ?>'><?php echo $drop_date ? short_date($drop_date) : ""; ?></span></td>
-            <td>
-                <input type='text' title='sha256 hash: <?php echo $sha_256_hash; ?>' onclick='this.select()' value='<?php echo $sha_256_hash; ?>' readonly>
-            </td>
-            <td>
-                <span title='source ip'><?php echo $source_ip; ?></span>
-            </td>
-            <td class='actions'>
-                <?php if ($curl_link) { ?>
-                    <span class='link' title="copy command to upload with cURL"
-                        onclick="copyToClipboard(this.getAttribute('curlurl'))"
-                        curlurl='<?php echo $curl_link; ?>'>➿
-                    </span>
-                <?php }
-                if ($wget_link) { ?>
-                    <span class='link' title="copy command to download with wget"
-                        onclick="copyToClipboard(this.getAttribute('wgeturl'))"
-                        wgeturl='<?php echo $wget_link; ?>'>🌐
-                    </span>
-                <?php } ?>
-                <span title='delete'>
-                    <a href='index.php?route=delete&key=<?php echo $drop_key; ?>&csrf_token=<?php echo $_SESSION["csrf_token"]; ?>'>❌</a>
-                </span>
-            </td>
-        </tr>
-    <?php
+
+        $json .= "$i: {" .
+            '"dropKey": "'.addslashes($drop_key).'",' .
+            '"createDate": "'.addslashes($create_date).'",' .
+            '"dropDate": "'.addslashes($drop_date).'",' .
+            '"dropStatus": "'.addslashes($drop_status).'",' .
+            '"dropNote": "'.addslashes($drop_note).'",' .
+            '"fileName": "'.addslashes($file_name).'",' .
+            '"filePath": "'.addslashes($file_path).'",' .
+            '"sha256hash": "'.addslashes($sha_256_hash).'",' .
+            '"curlLink": "'.addslashes($curl_link).'",' .
+            '"wgetLink": "'.addslashes($wget_link).'",' .
+            '"sourceIp": "'.addslashes($source_ip).'"' .
+        "},";
+        $i++;
     }
     $stmt->close();
+    $json .= "}";
+    return $json;
 }
 
 ?>
@@ -89,6 +70,7 @@ function add_drop_list_rows($user_id) {
     <title>Drop</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/common.css">
+    <script>window.csrf_token = '<?php echo $_SESSION["csrf_token"]; ?>';</script>
     <script src="js/home.js"></script>
 </head>
 <body>
@@ -103,37 +85,9 @@ function add_drop_list_rows($user_id) {
 </div>
 
 <div id="list-wrap">
-    <table class='drop-list'>
-        <tr class='drop-list-heading'>
-            <td>
-                <span>status</span>
-            </td>
-            <td>
-                <span>drop link</span>
-            </td>
-            <td>
-                <span>created</span>
-            </td>
-            <td>
-                <span>dropped</span>
-            </td>
-            <td>
-                <span>sha256 hash</span>
-            </td>
-            <td>
-                <span>source ip</span>
-            </td>
-            <td>
-                <span>actions</span>
-            </td>
-        </tr>
-        <?php echo add_drop_list_rows($_SESSION["user_id"]); ?>
-        <tr>
-            <td colspan='7' onclick="document.location='index.php?route=new&csrf_token=<?php echo $_SESSION["csrf_token"]; ?>'">
-                <div>+ new</div>
-            </td>
-        </tr>
-    </table>
+</div>
+<div id="new-drop-button" class="card card-1">
+    <a href="index.php?route=new&csrf_token=<?php echo $_SESSION["csrf_token"]; ?>">+</a>
 </div>
 
 <div id="settings-wrap">
@@ -144,5 +98,6 @@ function add_drop_list_rows($user_id) {
     </div>
 </div>
 
+<script>var dropListJSON = <?php echo get_drop_list_json($_SESSION["user_id"]); ?></script>
 </body>
 </html>
