@@ -19,6 +19,7 @@ if (is_upload_authorized()) {
 <head>
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, height=device-height"/>
     <title>Drop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/common.css">
     <link rel="stylesheet" href="style/upload-ui.css">
 </head>

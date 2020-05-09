@@ -5,8 +5,10 @@
 .fatal-error-title {
     font-size: 30px;
     margin-bottom: 20px;
+    font-family: 'Roboto', Consolas, Courier New, Arial, San-Serrif;
 }
 
 .fatal-error-text {
     white-space: pre-wrap;
+    font-family: 'Roboto', Consolas, Courier New, Arial, San-Serrif;
 }

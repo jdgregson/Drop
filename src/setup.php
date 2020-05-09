@@ -93,6 +93,7 @@ if (isset($_REQUEST["submit"])) {
 <head>
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, height=device-height"/>
     <title>Drop Setup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/common.css">
 </head>
 <body>
